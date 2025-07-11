@@ -6,15 +6,14 @@ from pathlib import Path
 from difflib import SequenceMatcher
 import threading
 
-ctk.set_appearance_mode("System")
-ctk.set_default_color_theme("blue")
-
+ctk.set_appearance_mode("dark")
+ctk.set_default_color_theme("dark-blue")
 
 class TypingTestApp:
     def __init__(self, root):
         self.root = root
-        self.root.title("Typing Test • Y7X")
-        self.root.geometry("580x420")
+        self.root.title("Typingo • Y7X")
+        self.root.geometry("540x410")
         self.root.resizable(False, False)
 
         self.sentences = [
@@ -63,35 +62,38 @@ class TypingTestApp:
         return round(matcher.ratio() * 100, 2)
 
     def styled_button(self, master, text, command):
-        return ctk.CTkButton(master, text=text, width=180, height=38, corner_radius=12,
-                             fg_color="#222831", hover_color="#00adb5",
-                             border_width=2, border_color="#00fff5", command=command)
+        return ctk.CTkButton(master, text=text, width=200, height=38, corner_radius=22,
+                             fg_color="#000000", hover_color="#ff1a5c",
+                             border_width=2, border_color="#ff004c",
+                             font=("Segoe UI", 14, "bold"), text_color="white",
+                             command=command)
 
     def setup_ui(self):
-        self.frame = ctk.CTkFrame(self.root, corner_radius=15)
-        self.frame.pack(expand=True, fill="both", padx=30, pady=20)
+        self.frame = ctk.CTkFrame(self.root, corner_radius=20, fg_color="#000000")
+        self.frame.pack(expand=True, fill="both", padx=20, pady=18)
         self.frame.grid_columnconfigure((0, 1), weight=1)
 
-        self.title_label = ctk.CTkLabel(self.frame, text="Typing Test", font=("Segoe UI", 24, "bold"))
-        self.title_label.grid(row=0, column=0, columnspan=2, pady=(8, 15))
+        self.title_label = ctk.CTkLabel(self.frame, text="Typing Test", font=("Segoe UI", 26, "bold"), text_color="#ff004c")
+        self.title_label.grid(row=0, column=0, columnspan=2, pady=(4, 10))
 
-        self.test_sentence_label = ctk.CTkLabel(self.frame, text="", font=("Segoe UI", 15), wraplength=460, justify="center", padx=10, pady=5)
+        self.test_sentence_label = ctk.CTkLabel(self.frame, text="", font=("Segoe UI", 14), wraplength=460, justify="center", text_color="#ffffff")
         self.test_sentence_label.grid(row=1, column=0, columnspan=2, pady=(0, 6))
 
-        self.input_box = ctk.CTkEntry(self.frame, width=420, font=("Segoe UI", 14), corner_radius=20)
-        self.input_box.grid(row=2, column=0, columnspan=2, pady=(20, 6))
+        self.input_box = ctk.CTkEntry(self.frame, width=400, height=34, font=("Segoe UI", 14), corner_radius=20,
+                                      fg_color="#000000", border_color="#ff004c", border_width=2, text_color="white")
+        self.input_box.grid(row=2, column=0, columnspan=2, pady=(16, 6))
         self.input_box.bind("<KeyRelease>", self.check_typing)
         self.input_box.bind("<Return>", self.finish_test)
         self.input_box.configure(state="disabled")
 
-        self.feedback_label = ctk.CTkLabel(self.frame, text="", font=("Segoe UI", 13), wraplength=540, text_color="#ffffff")
-        self.feedback_label.grid(row=3, column=0, columnspan=2, pady=(0, 2))
+        self.feedback_label = ctk.CTkLabel(self.frame, text="", font=("Segoe UI", 13), wraplength=460, text_color="#cccccc")
+        self.feedback_label.grid(row=3, column=0, columnspan=2)
 
         self.timer_label = ctk.CTkLabel(self.frame, text="", font=("Segoe UI", 12), text_color="#aaaaaa")
-        self.timer_label.grid(row=4, column=0, columnspan=2, pady=(0, 2))
+        self.timer_label.grid(row=4, column=0, columnspan=2)
 
-        self.result_label = ctk.CTkLabel(self.frame, text="", font=("Segoe UI", 14, "bold"))
-        self.result_label.grid(row=5, column=0, columnspan=2, pady=(4, 6))
+        self.result_label = ctk.CTkLabel(self.frame, text="", font=("Segoe UI", 14, "bold"), text_color="#44ff88")
+        self.result_label.grid(row=5, column=0, columnspan=2, pady=(4, 8))
 
         self.start_btn = self.styled_button(self.frame, "Start Test", self.start_test)
         self.start_btn.grid(row=6, column=0, pady=5, padx=5, sticky="e")
@@ -103,8 +105,16 @@ class TypingTestApp:
         self.best_btn.grid(row=7, column=0, pady=5, padx=5, sticky="e")
 
         self.quit_btn = self.styled_button(self.frame, "Exit", self.root.destroy)
-        self.quit_btn.configure(fg_color="#ff5e5e", hover_color="#e04848")
         self.quit_btn.grid(row=7, column=1, pady=5, padx=5, sticky="w")
+        
+        self.branding = ctk.CTkLabel(
+        self.frame,
+        text="🔎 Powered by Y7X 💗",
+        font=("Segoe UI", 13, "bold"),
+        text_color="#ff0033"  # Bright red glow style
+        )
+        self.branding.grid(row=8, column=0, columnspan=2, pady=(14, 0))
+
 
     def start_test(self):
         self.practice_mode_on = False
@@ -150,7 +160,7 @@ class TypingTestApp:
         for i, c in enumerate(self.test_sentence):
             if i < len(user_input):
                 if user_input[i] == c:
-                    styled += f"{c}"
+                    styled += c
                 else:
                     styled += f"❌{c}"
             else:
@@ -158,8 +168,8 @@ class TypingTestApp:
 
         if len(user_input) > 0 and len(self.test_sentence) >= len(user_input):
             if user_input[-1] != self.test_sentence[len(user_input) - 1]:
-                self.input_box.configure(border_color="red")
-                self.root.after(200, lambda: self.input_box.configure(border_color="#3a7ebf"))
+                self.input_box.configure(border_color="#ff004c")
+                self.root.after(200, lambda: self.input_box.configure(border_color="#ff004c"))
 
         self.feedback_label.configure(text=styled)
 
@@ -224,7 +234,6 @@ class TypingTestApp:
         self.feedback_label.configure(text="")
         self.timer_label.configure(text="")
         self.input_box.configure(state="disabled")
-
 
 if __name__ == "__main__":
     root = ctk.CTk()
