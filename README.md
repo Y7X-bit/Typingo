@@ -1,30 +1,29 @@
-# ⌨️ Typingo — The Ultimate Typing Test
+# ⚡ Typingo • Powered by Y7X 💗
 
-Typingo is a sleek and modern typing test app built using **CustomTkinter**.  
-Track your **typing speed**, improve **accuracy**, and train your fingers with ✨style✨.
-
-![Typing Test Banner](https://i.imgur.com/D9bF0QD.png)
+**Typingo** is your ultimate custom-built typing test app — redesigned with an **AMOLED interface**, glowing red outlines, bold layout, and a responsive UX. Built using `customtkinter`, this isn't your average typing tool — it’s **precision meets aesthetic**.
 
 ---
 
-## 🚀 Features
-- 🔠 **Live Typo Detection** with color feedback
-- 🧠 **Case-sensitive scoring** for pro-level practice
-- 🔁 **Practice Mode** with full session summary
-- 🏆 **Best Score Tracking** (WPM & Accuracy)
-- 🌙 Modern GUI using **CustomTkinter** with pill-shaped inputs
-- ⚡ Smooth and responsive — No lag, just speed!
+## 🖥️ Features
+- 🔴 **AMOLED UI** with glowing red accents
+- ✍️ **Case-sensitive typing test** with typo feedback
+- 🔁 **Practice Mode** with auto-progress and summary
+- 🧠 **WPM & Accuracy calculation**
+- 🧊 Smooth, pill-shaped buttons with hover glow
+- 💡 Real-time feedback with ❌ typo markers
+- 🔓 Best score tracking with local storage
+- 🔎 **Powered by Y7X 💗** branding at the bottom
 
 ---
 
-## 🛠️ Tech Stack
-- Python 3
-- [CustomTkinter](https://github.com/TomSchimansky/CustomTkinter)
+## 📸 UI Preview
+
+![Typingo Preview](assets/1.png)
 
 ---
 
-## 📦 Installation
+## 🚀 Run It
 
 ```bash
 pip install customtkinter
-python typingo.py
+python main.py
