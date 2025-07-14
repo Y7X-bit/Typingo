@@ -6,7 +6,7 @@
 Typingo is your ultimate custom-built typing test app — redesigned with an **AMOLED interface**, glowing red outlines, bold layout, and a responsive UX. Built using `customtkinter`, this isn't your average typing tool — it’s **precision meets aesthetic**.
 Branded with 💗 by [Y7X-bit](https://github.com/Y7X-bit)
 
-<img src="assets/1.png" width="650"/>
+<img src="assets/a.png" width="650"/>
 
 </div>
 
