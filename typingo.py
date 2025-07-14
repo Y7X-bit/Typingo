@@ -62,10 +62,17 @@ class TypingTestApp:
         return round(matcher.ratio() * 100, 2)
 
     def styled_button(self, master, text, command):
-        return ctk.CTkButton(master, text=text, width=200, height=38, corner_radius=22,
-                             fg_color="#000000", hover_color="#ff1a5c",
-                             border_width=2, border_color="#ff004c",
-                             font=("Segoe UI", 14, "bold"), text_color="white",
+        return ctk.CTkButton(master,
+                             text=text,
+                             width=200,
+                             height=38,
+                             corner_radius=22,
+                             fg_color="#000000",
+                             hover_color="#ff1a5c",
+                             border_width=2,
+                             border_color="#ff4d4d",
+                             font=("Segoe UI", 14, "bold"),
+                             text_color="white",
                              command=command)
 
     def setup_ui(self):
@@ -73,14 +80,21 @@ class TypingTestApp:
         self.frame.pack(expand=True, fill="both", padx=20, pady=18)
         self.frame.grid_columnconfigure((0, 1), weight=1)
 
-        self.title_label = ctk.CTkLabel(self.frame, text="Typing Test", font=("Segoe UI", 26, "bold"), text_color="#ff004c")
+        self.title_label = ctk.CTkLabel(self.frame, text="Typing Test", font=("Segoe UI", 26, "bold"), text_color="#ff4d4d")
         self.title_label.grid(row=0, column=0, columnspan=2, pady=(4, 10))
 
-        self.test_sentence_label = ctk.CTkLabel(self.frame, text="", font=("Segoe UI", 14), wraplength=460, justify="center", text_color="#ffffff")
+        self.test_sentence_label = ctk.CTkLabel(self.frame, text="", font=("Segoe UI", 14), wraplength=460, justify="center", text_color="white")
         self.test_sentence_label.grid(row=1, column=0, columnspan=2, pady=(0, 6))
 
-        self.input_box = ctk.CTkEntry(self.frame, width=400, height=34, font=("Segoe UI", 14), corner_radius=20,
-                                      fg_color="#000000", border_color="#ff004c", border_width=2, text_color="white")
+        self.input_box = ctk.CTkEntry(self.frame,
+                                      width=400,
+                                      height=34,
+                                      font=("Segoe UI", 14),
+                                      corner_radius=20,
+                                      fg_color="#000000",
+                                      border_color="#ff4d4d",
+                                      border_width=2,
+                                      text_color="white")
         self.input_box.grid(row=2, column=0, columnspan=2, pady=(16, 6))
         self.input_box.bind("<KeyRelease>", self.check_typing)
         self.input_box.bind("<Return>", self.finish_test)
@@ -106,15 +120,14 @@ class TypingTestApp:
 
         self.quit_btn = self.styled_button(self.frame, "Exit", self.root.destroy)
         self.quit_btn.grid(row=7, column=1, pady=5, padx=5, sticky="w")
-        
+
         self.branding = ctk.CTkLabel(
-        self.frame,
-        text="🔎 Powered by Y7X 💗",
-        font=("Segoe UI", 13, "bold"),
-        text_color="#ff0033"  # Bright red glow style
+            self.frame,
+            text="🔎 Powered by Y7X 💗",
+            font=("Segoe UI", 13, "bold"),
+            text_color="white"
         )
         self.branding.grid(row=8, column=0, columnspan=2, pady=(14, 0))
-
 
     def start_test(self):
         self.practice_mode_on = False
@@ -168,8 +181,8 @@ class TypingTestApp:
 
         if len(user_input) > 0 and len(self.test_sentence) >= len(user_input):
             if user_input[-1] != self.test_sentence[len(user_input) - 1]:
-                self.input_box.configure(border_color="#ff004c")
-                self.root.after(200, lambda: self.input_box.configure(border_color="#ff004c"))
+                self.input_box.configure(border_color="#ff4d4d")
+                self.root.after(200, lambda: self.input_box.configure(border_color="#ff4d4d"))
 
         self.feedback_label.configure(text=styled)
 
