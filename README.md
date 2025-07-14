@@ -1,10 +1,19 @@
-# ⚡ Typingo • Powered by Y7X 💗
+<div align="center">
 
-**Typingo** is your ultimate custom-built typing test app — redesigned with an **AMOLED interface**, glowing red outlines, bold layout, and a responsive UX. Built using `customtkinter`, this isn't your average typing tool — it’s **precision meets aesthetic**.
+# ⚡ Typingo
+**🎯 Where Precision Meets Performance**
+
+Typingo is your ultimate custom-built typing test app — redesigned with an **AMOLED interface**, glowing red outlines, bold layout, and a responsive UX. Built using `customtkinter`, this isn't your average typing tool — it’s **precision meets aesthetic**.
+Branded with 💗 by [Y7X-bit](https://github.com/Y7X-bit)
+
+<img src="assets/1.png" width="650"/>
+
+</div>
 
 ---
 
-## 🖥️ Features
+## 🌟 Features at a Glance
+
 - 🔴 **AMOLED UI** with glowing red accents
 - ✍️ **Case-sensitive typing test** with typo feedback
 - 🔁 **Practice Mode** with auto-progress and summary
@@ -16,14 +25,12 @@
 
 ---
 
-## 📸 UI Preview
+## 🖥️ Installation
 
-![Typingo Preview](assets/1.png)
-
----
-
-## 🚀 Run It
+> Python 3.9 or later required
 
 ```bash
-pip install customtkinter
-python main.py
+git clone https://github.com/Y7X-bit/Typingo.git
+cd Typingo
+pip install -r requirements.txt
+python Typingo.py
